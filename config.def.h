@@ -1,5 +1,4 @@
 /* See LICENSE file for copyright and license details. */
-
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 5;        /* gaps between windows */
@@ -19,6 +18,9 @@ static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
 static const char col_green[]        = "#6eff70";
 static const char col_urgborder[]   = "#ff0000";
+static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
+static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
+static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -94,9 +96,12 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
+	{ MODKEY|ShiftMask,             XK_minus,  setgaps,        {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = +1 } },
+	{ MODKEY|ControlMask,           XK_equal,  setgaps,        {.i = 0  } },
+	{ MODKEY,                       XK_equal,  spawn,          {.v = upvol   } },
+	{ MODKEY,                       XK_minus,  spawn,          {.v = downvol } },
+	{ MODKEY,                       XK_F9,     spawn,          {.v = mutevol } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
