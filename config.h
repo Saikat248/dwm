@@ -18,8 +18,8 @@ static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
 static const char col_green[]        = "#6eff70";
 static const char col_urgborder[]   = "#ff0000";
-static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
-static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
+static const char *upvol[]   = { "pulsemixer", "--change-volume", "+5", NULL };
+static const char *downvol[] = { "pulsemixer", "--change-volume", "-5",   NULL };
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
@@ -73,7 +73,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "gnome-terminal", NULL };
+static const char *termcmd[]  = { "st", NULL };
 static const char *web[] = {"brave-browser", NULL };
 static const char *slack[] = {"slack", NULL };
 static const char *MSteam[] = {"teams", NULL };
